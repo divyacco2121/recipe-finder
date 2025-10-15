@@ -9,7 +9,9 @@ window.onload = function () {
 };
 
 function fetchJoke() {
-  fetch(`${BASE_URL}/food/jokes/random`, {
+  fetch(`${BASE_URL}/food/jokes/random?apiKey=${API_KEY}`)
+  .then(response => response.json())
+  .then(data => { document.getElementById("joke").textContent = data.text; }); {
     method: "GET",
     headers: {
       "x-rapidapi-key": API_KEY,
@@ -196,3 +198,4 @@ function showSearchPage() {
 function showResultsPage() {
   showPage("resultsPage");
 }
+

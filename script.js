@@ -1,5 +1,6 @@
 const API_KEY = "8b43d3f6ff8e4c9ea30585e9584950a1";
 const API_HOST = "api.spoonacular.com";
+const PROXY_URL = 'https://cors-anywhere.herokuapp.com/';
 const BASE_URL = `https://${API_HOST}`;
 
 let currentRecipes = [];
@@ -9,9 +10,7 @@ window.onload = function () {
 };
 
 function fetchJoke() {
-  fetch(`${BASE_URL}/food/jokes/random?apiKey=${API_KEY}`)
-  .then(response => response.json())
-  .then(data => { document.getElementById("joke").textContent = data.text; }); {
+  fetch(`${PROXY_URL}${BASE_URL}/food/jokes/random`, {
     method: "GET",
     headers: {
       "x-rapidapi-key": API_KEY,
@@ -43,7 +42,7 @@ function fetchRecipesByIngredients(ingredients) {
   recipesList.innerHTML = '<p class="loading">Searching for recipes...</p>';
 
   fetch(
-    `${BASE_URL}/recipes/findByIngredients?ingredients=${ingredients}&number=5&ranking=1`,
+    `${PROXY_URL}${BASE_URL}/recipes/findByIngredients?ingredients=${ingredients}&number=5&ranking=1`,
     {
       method: "GET",
       headers: {
@@ -68,7 +67,7 @@ function fetchRandomRecipes() {
   const recipesList = document.getElementById("recipesList");
   recipesList.innerHTML = '<p class="loading">Finding random recipes...</p>';
 
-  fetch(`${BASE_URL}/recipes/random?number=5`, {
+  fetch(`${PROXY_URL}${BASE_URL}/recipes/random?number=5`, {
     method: "GET",
     headers: {
       "x-rapidapi-key": API_KEY,
@@ -127,7 +126,7 @@ function showRecipeDetail(recipeId) {
   detailDiv.innerHTML = '<p class="loading">Loading recipe details...</p>';
   showPage("detailPage");
 
-  fetch(`${BASE_URL}/recipes/${recipeId}/information`, {
+  fetch(`${PROXY_URL}${BASE_URL}/recipes/${recipeId}/information`, {
     method: "GET",
     headers: {
       "x-rapidapi-key": API_KEY,
@@ -167,7 +166,7 @@ function showRecipeDetail(recipeId) {
 }
 
 function fetchWidget(recipeId, widgetType, containerId) {
-  fetch(`${BASE_URL}/recipes/${recipeId}/${widgetType}?defaultCss=true`, {
+  fetch(`${PROXY_URL}${BASE_URL}/recipes/${recipeId}/${widgetType}?defaultCss=true`, {
     method: "GET",
     headers: {
       "x-rapidapi-key": API_KEY,
@@ -198,4 +197,3 @@ function showSearchPage() {
 function showResultsPage() {
   showPage("resultsPage");
 }
-

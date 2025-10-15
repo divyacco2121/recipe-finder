@@ -1,4 +1,4 @@
-const BASE_URL = 'https://www.themealdb.com/api/json/v1/1/';  // Test key '1' baked in—no signup!
+const BASE_URL = 'www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata';  // Test key '1' baked in—no signup!
 
 let currentRecipes = [];
 
@@ -149,3 +149,4 @@ function showSearchPage() {
 function showResultsPage() {
   showPage("resultsPage");
 }
+
